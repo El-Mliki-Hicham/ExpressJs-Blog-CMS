@@ -8,7 +8,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/usersRoutes');
-var reservationsRouter = require('./routes/reservationsRoutes');
+var categorysRouter = require('./routes/categorysRoutes');
 
 //cors 
 const cors = require('cors');
@@ -33,11 +33,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/categories', categorysRouter);
 
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+// 404 handler - Page Not Found
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
 });
 
 // error handler
