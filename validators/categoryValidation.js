@@ -1,4 +1,6 @@
 const { body } = require('express-validator');
+const Category = require('../models/Category'); // Adjust path as needed
+ 
 
 const categoryValidation = [
     body('name')
