@@ -1,7 +1,7 @@
 const { validationResult } = require('express-validator');
 const userService = require('../services/userService');
 const { errorResponse, successResponse } = require('../utils/responseHandler');
-
+const jwt = require('jsonwebtoken');
 
 exports.getUsers = async (req, res) => {
   try {
@@ -40,7 +40,24 @@ exports.login = async (req, res) => {
       return errorResponse(res, null, "Invalid credentials", 401);
     }
 
-    successResponse(res, user, "Login successful");
+    
+    // Generate JWT token
+    const token = jwt.sign(
+      { 
+        id: user._id,
+        email: user.email,
+        role: user.role 
+      }, 
+      process.env.JWT_SECRET,
+      { expiresIn: '24h' }
+    );
+
+    // Return user data with token
+    successResponse(res, {
+      user,
+      token
+    }, "Login successful");
+
   } catch (error) {
     errorResponse(res, error, "Error during login");
   }

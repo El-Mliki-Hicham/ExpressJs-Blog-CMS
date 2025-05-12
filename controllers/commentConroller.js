@@ -68,3 +68,17 @@ exports.deleteComment = async (req, res) => {
 };
 
 
+// Get comments by article ID
+exports.getCommentsByArticleId = async (req, res) => {
+    try {
+        const comments = await Comment.find({ article: req.body.articleId }).populate('article user');
+        if (!comments.length) {
+            return errorResponse(res, null, "No comments found for this article", 404);
+        }
+        successResponse(res, comments, "Comments fetched successfully");
+    } catch (error) {
+        errorResponse(res, error, "Error fetching comments for article");
+    }
+};
+
+
