@@ -28,7 +28,7 @@ const articleSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['pending', 'accepted', 'archived'],
+    enum: ['pending', 'accepted', 'archived','blocked'],
     default: 'pending',
   },
   publish:{
@@ -37,8 +37,11 @@ const articleSchema = new mongoose.Schema({
   },
   image: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Media',
-    required: true
+    ref: 'Media'
+  },
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category'
   },
  
 }, { timestamps: true });

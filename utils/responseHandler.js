@@ -10,7 +10,6 @@ export const successResponse = (res, data, message = "Success") => {
     return res.status(statusCode).json({
       success: false,
       message,
-      error: error.message || error,
+      error: error?.message || error || "Unknown error occurred",
     });
   };
-  

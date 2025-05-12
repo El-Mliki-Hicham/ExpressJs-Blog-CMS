@@ -9,6 +9,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/usersRoutes');
 var categorysRouter = require('./routes/categorysRoutes');
+var articlesRouter = require('./routes/articlesRoutes');
+const commentRouter = require('./routes/commentsRoutes');
 
 //cors 
 const cors = require('cors');
@@ -34,6 +36,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/categories', categorysRouter);
+app.use('/api/articles', articlesRouter);
+app.use('/api/comments', commentRouter);
 
 
 // 404 handler - Page Not Found
