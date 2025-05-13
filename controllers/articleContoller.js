@@ -13,7 +13,7 @@ exports.getAllArticles = async (req, res) => {
             .sort({ createdAt: -1 });
         successResponse(res, articles, "Articles fetched successfully");
     } catch (error) {
-        errorResponse(res, err, "Error fetching categories");
+        errorResponse(res, error, "Error fetching categories");
     }
 };
 
