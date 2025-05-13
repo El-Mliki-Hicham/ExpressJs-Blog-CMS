@@ -10,5 +10,5 @@ const PORT = process.env.PORT || 3030;
 const server = http.createServer(app);
 
 server.listen(PORT, () => {
-  console.log(`ðŸš€ Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
